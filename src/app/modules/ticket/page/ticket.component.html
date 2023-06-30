@@ -5,12 +5,13 @@
             <p-toolbar styleClass="mb-4">
                 <ng-template pTemplate="right">
                     <div class="my-2">
-                        <button pButton pRipple label="Create" icon="pi pi-plus" class="p-button-success mr-2"></button>
+                        <button pButton pRipple label="Create" icon="pi pi-plus" class="mr-2"
+                            (click)="showAddTicketDialog()"></button>
                     </div>
                 </ng-template>
             </p-toolbar>
-            <p-table [loading]="(loading$ | async)!" *ngIf="(tickets$ | async)?.length != 0" [value]="(tickets$ | async)!"
-                [tableStyle]="{ 'min-width': '50rem' }">
+            <p-table [loading]="(loading$ | async)!" *ngIf="(tickets$ | async)?.length != 0"
+                [value]="(tickets$ | async)!" [tableStyle]="{ 'min-width': '50rem' }">
                 <ng-template pTemplate="emptymessage" let-columns>
                     This table is empty.
                 </ng-template>
@@ -32,6 +33,8 @@
             <div *ngIf="(tickets$ | async)?.length == 0">
                 No data found
             </div>
+            <app-ticket-add [saving]="(saving$ | async)!" [addTicketDialog]="addTicketDialog"
+                (close)="hideAddTicketDialog()" (save)="addTicket($event)"></app-ticket-add>
         </div>
     </div>
 </div>

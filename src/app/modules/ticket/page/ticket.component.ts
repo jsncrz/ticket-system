@@ -1,16 +1,18 @@
 import { Component } from '@angular/core';
-import { AsyncSubject, Observable, Subject } from 'rxjs';
+import { AsyncSubject, BehaviorSubject, Observable, Subject } from 'rxjs';
 import { Ticket } from 'src/app/data/schema/ticket';
 import { TicketService } from 'src/app/data/service/ticket.service';
 
 @Component({
   selector: 'app-ticket',
   templateUrl: './ticket.component.html',
-  styleUrls: ['./ticket.component.sass']
+  styleUrls: ['./ticket.component.scss']
 })
 export class TicketComponent {
-    tickets$: Subject<Ticket[]> = new AsyncSubject();
-    loading$: Subject<boolean> = new AsyncSubject();
+    tickets$!: Subject<Ticket[]>;
+    loading$!: Subject<boolean>;
+    saving$!: Subject<boolean>;
+    addTicketDialog: boolean = false;
 
     constructor(private ticketService: TicketService) {
 
@@ -18,8 +20,20 @@ export class TicketComponent {
     ngOnInit(): void {
         this.tickets$ = this.ticketService.getTickets();
         this.loading$ = this.ticketService.isLoading();
-        //Called after the constructor, initializing input properties, and the first call to ngOnChanges.
-        //Add 'implements OnInit' to the class.
+        this.saving$ = this.ticketService.isSaving();
+    }
 
+    addTicket(ticket: Ticket): void {
+        this.ticketService.createTicket(ticket).subscribe(() => {
+            this.addTicketDialog = false;
+        });
+    }
+
+    showAddTicketDialog(): void {
+        this.addTicketDialog = true;
+    }
+
+    hideAddTicketDialog(): void {
+        this.addTicketDialog = false;
     }
 }

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, Subject, tap } from 'rxjs';
+import { Observable, Subject, map, tap } from 'rxjs';
 import { Ticket } from '../schema/ticket';
 import { BaseService } from 'src/app/core/base.service';
 
@@ -38,7 +38,13 @@ export class TicketService extends BaseService {
     }
 
     createTicket(ticket: Ticket): Observable<string> {
-        return this.httpClient.post(`${this.url}/tickets`, ticket, { responseType: 'text' });
+        this.saving$.next(true);
+        return this.httpClient.post(`${this.url}/tickets`, ticket, { responseType: 'text' })
+        .pipe(map((ticket) => {
+            this.saving$.next(false);
+            this.refreshTickets();
+            return ticket;
+        }));
     }
 
     updateTicket(id: string, ticket: Ticket): Observable<string> {
