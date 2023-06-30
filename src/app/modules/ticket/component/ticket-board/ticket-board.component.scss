@@ -1,0 +1,95 @@
+.ticket-board-gutter {
+    position: relative;
+}
+
+.ticket-board-gutter [class*=col] {
+    padding: 0.5rem;
+}
+
+
+.board-column {
+    border-radius: 8px;
+    background: var(--background-500);
+
+    .board-column-label {
+        color: var(--text-color);
+        margin-bottom: 0.5em;
+    }
+    .p-badge {
+        background: none !important;
+        color: var(--text-color) !important;
+    }
+
+    .ticket-list {
+        list-style: none !important;
+        margin: 0rem !important;
+        padding: 0rem !important;
+        gap: 0rem !important;
+        flex-direction: column !important;
+        display: flex !important;
+        min-height: 50px;
+
+    }
+
+}
+
+.board-row {
+    list-style-type: none;
+    height: 90px;
+    background-color: var(--surface-card);
+    margin-bottom: 0.5em;
+    border-radius: 4px;
+    color: var(--text-color);
+    word-wrap: break-word;
+    box-shadow: 0px 9px 15px -13px var(--background-700);
+    -webkit-box-shadow: 0px 9px 15px -13px var(--background-700);
+    -moz-box-shadow: 0px 9px 15px -13px var(--background-700);
+    position: relative;
+
+    .ticket-item {
+        padding: 1em;
+        width: 100%;
+
+        .ticket-item-priority {
+            position: absolute;
+            bottom: 10px;
+            width: 70px;
+            font-size: 0.75rem !important;
+            font-weight: bold;
+            margin: auto;
+            padding: 4px;
+            border-radius: 4px;
+            text-align: start;
+            border: 1px solid rgba(0, 0, 0, 0.2);
+
+            .pi {
+                font-size: 0.75rem;
+                line-height: 0;
+            }
+
+            span {
+                margin-left: 5px;
+            }
+        }
+
+        .ticket-priority-c {
+            color: var(--red-500);
+        }
+
+        .ticket-priority-h {
+            color: var(--yellow-500);
+        }
+
+        .ticket-priority-m {
+            color: var(--green-500);
+        }
+
+        .ticket-priority-l {
+            color: var(--cyan-500);
+        }
+
+        .ticket-priority-vl {
+            color: var(--gray-500);
+        }
+    }
+}

@@ -1,0 +1,137 @@
+<div class="grid ticket-board-gutter" cdkDropListGroup>
+
+    <div *ngIf="saving || loading">
+        <ts-loading></ts-loading>
+    </div>
+    <div class="col-3">
+        <div class="board-column">
+            <p class="board-column-label font-bold">
+                New
+                <p-badge *ngIf="newTickets" value="{{newTickets!.length}}"></p-badge>
+            </p>
+            <ul class="ticket-list" *ngIf="newTickets" cdkDropList [cdkDropListDisabled]="saving"
+                [cdkDropListData]="newTickets" (cdkDropListDropped)="onDrop($event, TicketStatus.New)">
+                <li cdkDrag *ngFor="let ticket of newTickets" class="board-row"
+                    (cdkDragStarted)="handleDragStart($event)" (cdkDragEnded)="handleDragEnd($event)"
+                    (click)="handleClick(ticket)">
+                    <ng-template
+                        *ngTemplateOutlet="ticketItem; context: { $implicit: { title: ticket.title, priority: ticket.priority} }"></ng-template>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-3">
+        <div class="board-column">
+            <p class="board-column-label font-bold">
+                In Progress
+                <p-badge *ngIf="inProgressTickets" value="{{inProgressTickets!.length}}"></p-badge>
+            </p>
+            <ul class="ticket-list" *ngIf="inProgressTickets" cdkDropList [cdkDropListDisabled]="saving"
+                [cdkDropListData]="inProgressTickets" (cdkDropListDropped)="onDrop($event, TicketStatus.InProgress)">
+                <li cdkDrag *ngFor="let ticket of inProgressTickets" class="board-row"
+                    (cdkDragStarted)="handleDragStart($event)" (cdkDragEnded)="handleDragEnd($event)"
+                    (click)="handleClick(ticket)">
+                    <ng-template
+                        *ngTemplateOutlet="ticketItem; context: { $implicit: { title: ticket.title, priority: ticket.priority} }"></ng-template>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-3">
+        <div class="board-column">
+            <p class="board-column-label font-bold">
+                Testing
+                <p-badge *ngIf="testingTickets" value="{{testingTickets!.length}}"></p-badge>
+            </p>
+            <ul class="ticket-list" *ngIf="testingTickets" cdkDropList [cdkDropListDisabled]="saving"
+                [cdkDropListData]="testingTickets" (cdkDropListDropped)="onDrop($event, TicketStatus.Testing)">
+                <li cdkDrag *ngFor="let ticket of testingTickets" class="board-row"
+                    (cdkDragStarted)="handleDragStart($event)" (cdkDragEnded)="handleDragEnd($event)"
+                    (click)="handleClick(ticket)">
+                    <ng-template
+                        *ngTemplateOutlet="ticketItem; context: { $implicit: { title: ticket.title, priority: ticket.priority}}"></ng-template>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="col-3">
+        <div class="board-column">
+            <p class="board-column-label font-bold">
+                Completed
+                <p-badge *ngIf="completedTickets" value="{{completedTickets!.length}}"></p-badge>
+            </p>
+            <ul class="ticket-list" *ngIf="completedTickets" cdkDropList [cdkDropListDisabled]="saving"
+                [cdkDropListData]="completedTickets" (cdkDropListDropped)="onDrop($event, TicketStatus.Completed)">
+                <li cdkDrag *ngFor="let ticket of completedTickets" class="board-row"
+                    (cdkDragStarted)="handleDragStart($event)" (cdkDragEnded)="handleDragEnd($event)"
+                    (click)="handleClick(ticket)">
+                    <ng-template
+                        *ngTemplateOutlet="ticketItem; context: { $implicit: { title: ticket.title, priority: ticket.priority}}"></ng-template>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+<ng-template #ticketItem let-ticket>
+    <div class="ticket-item full-height">
+        <span class="ticket-item-title">
+            {{ticket.title}}
+        </span>
+        <ng-template
+            *ngTemplateOutlet="ticketItemPriority; context: { $implicit: { priority: ticket.priority} }"></ng-template>
+    </div>
+</ng-template>
+
+<ng-template #ticketItemPriority let-ticket>
+
+    <ng-container [ngSwitch]="ticket.priority">
+        <div *ngSwitchCase="TicketPriority.VeryLow" class="ticket-item-priority ticket-priority-vl">
+            <i class="pi pi-circle-fill"></i>
+            <span>Very Low</span>
+        </div>
+        <div *ngSwitchCase="TicketPriority.Low" class="ticket-item-priority ticket-priority-l">
+            <i class="pi pi-circle-fill"></i>
+            <span>Low</span>
+        </div>
+        <div *ngSwitchCase="TicketPriority.Medium" class="ticket-item-priority ticket-priority-m">
+            <i class="pi pi-circle-fill"></i>
+            <span>Medium</span>
+        </div>
+        <div *ngSwitchCase="TicketPriority.High" class="ticket-item-priority ticket-priority-h">
+            <i class="pi pi-circle-fill"></i>
+            <span>High</span>
+        </div>
+        <div *ngSwitchCase="TicketPriority.Critical" class="ticket-item-priority ticket-priority-c">
+            <i class="pi pi-circle-fill"></i>
+            <span>Critical</span>
+        </div>
+    </ng-container>
+</ng-template>
+<!-- cdkDropListGroup doesnt work with templates -->
+<!--
+    <ng-template
+        *ngTemplateOutlet="ticketColumn; context: { $implicit: { ticketData: newTickets, label: 'New'} }"></ng-template>
+    <ng-template
+        *ngTemplateOutlet="ticketColumn; context: { $implicit: { ticketData: inProgressTickets, label: 'In Progress'} }"></ng-template>
+    <ng-template
+        *ngTemplateOutlet="ticketColumn; context: { $implicit: { ticketData: testingTickets, label: 'Testing'} }"></ng-template>
+    <ng-template
+        *ngTemplateOutlet="ticketColumn; context: { $implicit: { ticketData: completedTickets, label: 'Completed'} }"></ng-template> -->
+
+<!-- <ng-template #ticketColumn let-column>
+    <div class="col-3">
+        <div class="board-column">
+            <p class="board-column-label font-bold">
+                {{column.label}}
+                <p-badge *ngIf="testingTickets" value="{{testingTickets!.length}}"></p-badge>
+            </p>
+            <ul class="ticket-list" *ngIf="tickets" cdkDropList
+                [cdkDropListData]="tickets" (cdkDropListDropped)="onDrop($event)">
+                <li cdkDrag *ngFor="let ticket of testingTickets" class="board-row"
+                    (cdkDragStarted)="handleDragStart($event)" (click)="handleClick(ticket)">
+                    {{ticket.title}}
+                </li>
+            </ul>
+        </div>
+    </div>
+</ng-template> -->

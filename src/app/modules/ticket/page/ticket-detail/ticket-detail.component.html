@@ -1,0 +1,20 @@
+<ng-container *ngIf="ticket && ((loading$ | async) !== true); else notFound">
+    <div class="grid min-h-full">
+
+        <div class="col-12" [formGroup]="ticketForm">
+
+            <div class="card">
+                <div class="grid">
+                    <div class="col-8">
+                        <p-editor [readonly]="!editFlag.desc" formControlName="description" [style]="{ height: '320px' }"></p-editor>
+                    </div>
+                    <div class="col-4">b</div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-container>
+<ng-template #notFound>
+    <ts-resource-not-found></ts-resource-not-found>
+</ng-template>

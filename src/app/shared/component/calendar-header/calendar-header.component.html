@@ -1,0 +1,38 @@
+<div class="grid text-center">
+    <div class="col-4">
+        <div class="p-buttonset">
+            <p-button pRipple mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate"
+                (viewDateChange)="viewDateChange.next(viewDate)">
+                Previous
+            </p-button>
+            <p-button pRipple mwlCalendarToday [(viewDate)]="viewDate" styleClass="p-button-outlined"
+                (viewDateChange)="viewDateChange.next(viewDate)">
+                Today
+            </p-button>
+            <p-button pRipple mwlCalendarNextView [view]="view" [(viewDate)]="viewDate"
+                (viewDateChange)="viewDateChange.next(viewDate)">
+                Next
+            </p-button>
+        </div>
+    </div>
+    <div class="col-4">
+        <h3>{{ viewDate | calendarDate: view + 'ViewTitle':locale }}</h3>
+    </div>
+    <div class="col-4">
+        <div class="p-buttonset">
+            <p-button pRipple (click)="viewChange.emit(CalendarView.Month)"
+                [class.active]="view === CalendarView.Month">
+                Month
+            </p-button>
+            <p-button pRipple (click)="viewChange.emit(CalendarView.Week)"
+                [class.active]="view === CalendarView.Week">
+                Week
+            </p-button>
+            <p-button pRipple (click)="viewChange.emit(CalendarView.Day)"
+                [class.active]="view === CalendarView.Day">
+                Day
+            </p-button>
+        </div>
+    </div>
+</div>
+<br />
