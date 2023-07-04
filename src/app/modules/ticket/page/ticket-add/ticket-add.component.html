@@ -3,21 +3,21 @@
     <ng-template pTemplate="content" [formGroup]="ticketForm">
         <div class="field">
             <label for="add-dialog-task-name">Task Name</label>
-            <input type="text" pInputText id="add-dialog-task-name" formControlName="Task" required autofocus
-                [ngClass]="{'ng-invalid ng-dirty' : submitted && !ticketForm.value.Task}" />
-            <small class="ng-dirty ng-invalid" *ngIf="submitted && !ticketForm.value.Task">Task is required.</small>
+            <input type="text" pInputText id="add-dialog-task-name" formControlName="task" required autofocus
+                [ngClass]="{'ng-invalid ng-dirty' : submitted && !ticketForm.value.task}" />
+            <small class="ng-dirty ng-invalid" *ngIf="submitted && !ticketForm.value.task">task is required.</small>
         </div>
         <div class="field">
             <label for="add-dialog-task-start-time">Start Time</label>
-            <p-calendar id="add-dialog-task-start-time" [readonlyInput]="true" formControlName="StartTime"
-                (onSelect)="setEndTime($event)" [showTime]="true" appendTo="body"></p-calendar>
+            <p-calendar id="add-dialog-task-start-time" [readonlyInput]="true" formControlName="startTime"
+                (onSelect)="setEndTime($event)" [showTime]="true" appendTo="body" [showIcon]="true"></p-calendar>
 
         </div>
         <div class="field">
             <label for="add-dialog-task-end-time">End Time</label>
             <p-calendar id="add-dialog-task-end-time" [readonlyInput]="true" formControlName="EndTime"
-                [minDate]="ticketForm.value.StartTime!" [showTime]="true" [maxDate]="maxDate"
-                appendTo="body"></p-calendar>
+                [minDate]="ticketForm.value.startTime!" [showTime]="true" [maxDate]="maxDate" appendTo="body"
+                [showIcon]="true"></p-calendar>
 
         </div>
     </ng-template>

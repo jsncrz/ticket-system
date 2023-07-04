@@ -1,14 +1,14 @@
-import { Component } from '@angular/core';
-import { AsyncSubject, BehaviorSubject, Observable, Subject } from 'rxjs';
-import { Ticket } from 'src/app/data/schema/ticket';
-import { TicketService } from 'src/app/data/service/ticket.service';
+import { Component, OnInit } from '@angular/core';
+import { Subject } from 'rxjs';
+import { Ticket } from '@schema/ticket';
+import { TicketService } from '@service/ticket.service';
 
 @Component({
-  selector: 'app-ticket',
+  selector: 'ts-ticket',
   templateUrl: './ticket.component.html',
   styleUrls: ['./ticket.component.scss']
 })
-export class TicketComponent {
+export class TicketComponent implements OnInit {
     tickets$!: Subject<Ticket[]>;
     loading$!: Subject<boolean>;
     saving$!: Subject<boolean>;
@@ -17,7 +17,7 @@ export class TicketComponent {
     constructor(private ticketService: TicketService) {
 
     }
-    ngOnInit(): void {
+    ngOnInit() {
         this.tickets$ = this.ticketService.getTickets();
         this.loading$ = this.ticketService.isLoading();
         this.saving$ = this.ticketService.isSaving();

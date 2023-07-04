@@ -1,5 +1,5 @@
 export interface Ticket {
-    Task?: string;
-    StartTime?: Date;
-    EndTime?: Date;
+    task?: string;
+    startTime?: Date;
+    endTime?: Date;
 }

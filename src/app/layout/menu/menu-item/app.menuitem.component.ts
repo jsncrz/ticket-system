@@ -8,7 +8,7 @@ import { LayoutService } from '../../service/app.layout.service';
 
 @Component({
     // eslint-disable-next-line @angular-eslint/component-selector
-    selector: '[app-menuitem]',
+    selector: '[ticket-menuitem]',
     template: `
 		<ng-container>
             <div *ngIf="root && item.visible !== false" class="layout-menuitem-root-text">{{item.label}}</div>
@@ -30,7 +30,7 @@ import { LayoutService } from '../../service/app.layout.service';
 
 			<ul *ngIf="item.items && item.visible !== false" [@children]="submenuAnimation">
 				<ng-template ngFor let-child let-i="index" [ngForOf]="item.items">
-					<li app-menuitem [item]="child" [index]="i" [parentKey]="key" [class]="child.badgeClass"></li>
+					<li ticket-menuitem [item]="child" [index]="i" [parentKey]="key" [class]="child.badgeClass"></li>
 				</ng-template>
 			</ul>
 		</ng-container>

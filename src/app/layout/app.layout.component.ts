@@ -6,7 +6,7 @@ import { AppSidebarComponent } from "./sidebar/app.sidebar.component";
 import { AppTopBarComponent } from './topbar/app.topbar.component';
 
 @Component({
-    selector: 'app-layout',
+    selector: 'ts-layout',
     templateUrl: './app.layout.component.html'
 })
 export class AppLayoutComponent implements OnDestroy {

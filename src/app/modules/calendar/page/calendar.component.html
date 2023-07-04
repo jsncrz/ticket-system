@@ -1,0 +1,25 @@
+<div class="grid">
+    <div class="col-12">
+        <div class="card">
+            <ng-template #loading>
+                <div class="text-center">
+                    <i class="fas fa-spin fa-spinner fa-5x"></i> <br />
+                    Loading tickets...
+                </div>
+            </ng-template>
+
+            <ts-calendar-header [(view)]="view" [(viewDate)]="viewDate" />
+            <div *ngIf="calendar$ | async; else loading; let events">
+                <div [ngSwitch]="view">
+                    <mwl-calendar-month-view *ngSwitchCase="'month'" [viewDate]="viewDate" [events]="events"
+                        [activeDayIsOpen]="activeDayIsOpen" (dayClicked)="monthDayClicked($event.day)"
+                        (eventClicked)="eventClicked($event)" />
+                    <mwl-calendar-week-view *ngSwitchCase="'week'" [viewDate]="viewDate" [events]="events"
+                        (eventClicked)="eventClicked($event)" />
+                    <mwl-calendar-day-view *ngSwitchCase="'day'" [viewDate]="viewDate" [events]="events"
+                        (eventClicked)="eventClicked($event)" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

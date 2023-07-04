@@ -21,6 +21,12 @@
             "es2020",
             "dom"
         ],
+        "paths": {
+            "@service/*": ["src/app/data/service/*"],
+            "@core/*": ["src/app/core/*"],
+            "@shared/*": ["src/app/shared/*"],
+            "@schema/*": ["src/app/data/schema/*"],
+        }
     },
     "angularCompilerOptions": {
         "enableI18nLegacyMessageIdFormat": false,

@@ -3,7 +3,7 @@ import { Component } from '@angular/core';
 import { LayoutService } from '../service/app.layout.service';
 
 @Component({
-    selector: 'app-menu',
+    selector: 'ts-menu',
     templateUrl: './app.menu.component.html'
 })
 export class AppMenuComponent implements OnInit {
@@ -23,6 +23,7 @@ export class AppMenuComponent implements OnInit {
             {
                 label: 'Tickets',
                 items: [
+                    { label: 'Calendar', icon: 'pi pi-fw pi-calendar', routerLink: ['/calendar'] },
                     { label: 'Tickets', icon: 'pi pi-fw pi-ticket', routerLink: ['/ticket'] },
                 ]
             },

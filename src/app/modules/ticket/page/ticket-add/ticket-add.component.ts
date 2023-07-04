@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
-    selector: 'app-ticket-add',
+    selector: 'ts-ticket-add',
     templateUrl: './ticket-add.component.html',
     styleUrls: ['./ticket-add.component.scss']
 })
@@ -18,8 +18,8 @@ export class TicketAddComponent {
 
     constructor() {
         this.ticketForm = new FormGroup({
-            Task: new FormControl('', [Validators.required]),
-            StartTime: new FormControl('', [Validators.required]),
+            task: new FormControl('', [Validators.required]),
+            startTime: new FormControl('', [Validators.required]),
             EndTime: new FormControl({ value: '', disabled: true }, [Validators.required]),
         });
     }

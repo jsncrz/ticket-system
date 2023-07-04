@@ -3,10 +3,14 @@ import { BehaviorSubject, Subject } from 'rxjs';
 
 export abstract class BaseService {
     protected url: string = 'http://localhost:8080';
+    protected authenticatedUrl: string = 'http://localhost:8080/v1';
+    protected resourceUrl!: string;
     protected loading$: BehaviorSubject<boolean> = new BehaviorSubject(false);
     protected saving$: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
-    constructor(protected httpClient: HttpClient) { }
+    constructor(protected httpClient: HttpClient, protected resource: string) {
+        this.resourceUrl = `${this.authenticatedUrl}/${resource}`;
+     }
 
     isLoading(): Subject<boolean> {
         return this.loading$;

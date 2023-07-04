@@ -18,6 +18,11 @@ import { AppLayoutComponent } from "./layout/app.layout.component";
                       loadChildren: () =>
                         import('./modules/ticket/ticket.module').then(m => m.TicketModule)
                     },
+                    {
+                      path: 'calendar',
+                      loadChildren: () =>
+                        import('./modules/calendar/calendar.module').then(m => m.CalendarModule)
+                    },
                 ]
             },
             // { path: 'notfound', component: NotfoundComponent },

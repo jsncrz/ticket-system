@@ -1,9 +1,12 @@
-import { NgModule } from '@angular/core';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
-import { AppComponent } from './app.component';
+import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
-import { AppLayoutModule } from './layout/app.layout.module';
+import { AppComponent } from './app.component';
+import { CalendarService } from './data/service/calendar.service';
+import { DashboardService } from './data/service/dashboard.service';
 import { TicketService } from './data/service/ticket.service';
+import { AppLayoutModule } from './layout/app.layout.module';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
     declarations: [
@@ -11,12 +14,14 @@ import { TicketService } from './data/service/ticket.service';
     ],
     imports: [
         AppRoutingModule,
-        AppLayoutModule
+        AppLayoutModule,
+        SharedModule
     ],
     providers: [
         { provide: LocationStrategy, useClass: HashLocationStrategy },
-        TicketService
-
+        TicketService,
+        DashboardService,
+        CalendarService
     ],
     bootstrap: [AppComponent]
 })
