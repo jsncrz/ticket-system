@@ -18,7 +18,14 @@ export class TicketService extends BaseService {
             .subscribe({
                 next: (tickets) => {
                     this.tickets$.next(tickets);
+                    console.log(tickets);
                 },
+                error: (err) => {
+                    console.error(err);
+                },
+                complete: () => {
+                    this.loading$.next(false);
+                }
             });
     }
 

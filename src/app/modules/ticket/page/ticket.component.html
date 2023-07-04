@@ -10,27 +10,7 @@
                     </div>
                 </ng-template>
             </p-toolbar>
-            <p-table [loading]="(loading$ | async)!" *ngIf="(tickets$ | async)?.length !== 0"
-                [value]="(tickets$ | async)!" [tableStyle]="{ 'min-width': '50rem' }">
-                <ng-template pTemplate="emptymessage" let-columns>
-                    This table is empty.
-                </ng-template>
-                <ng-template pTemplate="header">
-                    <tr>
-                        <th>Task</th>
-                        <th>Start Time</th>
-                        <th>End Time</th>
-                    </tr>
-                </ng-template>
-                <ng-template pTemplate="body" let-ticket>
-                    <tr>
-                        <td>{{ ticket.task }}</td>
-                        <td>{{ ticket.startTime | date:'medium' }}</td>
-                        <td>{{ ticket.EndTime | date:'medium' }}</td>
-                    </tr>
-                </ng-template>
-            </p-table>
-            <div *ngIf="(tickets$ | async)?.length == 0">
+            <div *ngIf="(tickets$ | async)?.length === 0">
                 No data found
             </div>
             <ts-ticket-add [saving]="(saving$ | async)!" [addTicketDialog]="addTicketDialog"

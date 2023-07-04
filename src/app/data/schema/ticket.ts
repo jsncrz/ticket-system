@@ -1,5 +1,11 @@
+enum Status {
+	StatusNew,
+	StatusInProgress,
+	StatusTesting,
+	StatusCompleted,
+}
 export interface Ticket {
-    task?: string;
-    startTime?: Date;
-    endTime?: Date;
+    name?: string;
+    status?: Status;
+    tasks?: Task[];
 }
