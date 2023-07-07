@@ -1,5 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { TicketStatus, getTicketStatusLabel } from '@schema/ticket';
+import { SelectItem } from 'primeng/api';
 
 @Component({
     selector: 'ts-ticket-add',
@@ -9,19 +11,28 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 export class TicketAddComponent {
     @Input() addTicketDialog: boolean = false;
     @Input() saving: boolean = false;
-    @Output() close: EventEmitter<any> = new EventEmitter();
+    @Output() closeDialog: EventEmitter<any> = new EventEmitter();
     @Output() save: EventEmitter<any> = new EventEmitter();
 
     ticketForm: FormGroup;
     submitted: boolean = false;
     maxDate!: Date;
+    status: SelectItem[] = [];
 
     constructor() {
         this.ticketForm = new FormGroup({
-            task: new FormControl('', [Validators.required]),
-            startTime: new FormControl('', [Validators.required]),
-            EndTime: new FormControl({ value: '', disabled: true }, [Validators.required]),
+            title: new FormControl('', [Validators.required]),
+            description: new FormControl(''),
+            status: new FormControl(TicketStatus.New, [Validators.required]),
+
+            // startTime: new FormControl('', [Validators.required]),
+            // EndTime: new FormControl({ value: '', disabled: true }, [Validators.required]),
         });
+        Object.values(TicketStatus).forEach(value => {
+            if (!isNaN(Number(value))) {
+                this.status.push({label: getTicketStatusLabel(Number(value)), value: value})
+            }
+        })
     }
 
     onHide(): void {
@@ -29,7 +40,7 @@ export class TicketAddComponent {
     }
 
     hideAddTicketDialog(): void {
-        this.close.emit();
+        this.closeDialog.emit();
     }
 
     addTicket(): void {
