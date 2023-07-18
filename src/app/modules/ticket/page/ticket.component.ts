@@ -36,4 +36,8 @@ export class TicketComponent implements OnInit {
     hideAddTicketDialog(): void {
         this.addTicketDialog = false;
     }
+
+    ticketMoved(ticket: Ticket): void {
+        this.ticketService.updateTicket(ticket.id, ticket).subscribe();
+    }
 }

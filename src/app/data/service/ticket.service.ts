@@ -10,7 +10,7 @@ export class TicketService extends BaseService {
 
     constructor(httpClient: HttpClient) {
         super(httpClient, 'tickets');
-     }
+    }
 
     private refreshTickets() {
         this.loading$.next(true);
@@ -18,7 +18,6 @@ export class TicketService extends BaseService {
             .subscribe({
                 next: (tickets) => {
                     this.tickets$.next(tickets);
-                    console.log(tickets);
                 },
                 error: (err) => {
                     console.error(err);
@@ -41,15 +40,21 @@ export class TicketService extends BaseService {
     createTicket(ticket: Ticket): Observable<string> {
         this.saving$.next(true);
         return this.httpClient.post(`${this.resourceUrl}`, ticket, { responseType: 'text' })
-        .pipe(map((ticket) => {
-            this.saving$.next(false);
-            this.refreshTickets();
-            return ticket;
-        }));
+            .pipe(map((ticket) => {
+                this.saving$.next(false);
+                this.refreshTickets();
+                return ticket;
+            }));
     }
 
     updateTicket(id: string, ticket: Ticket): Observable<string> {
-        return this.httpClient.put(`${this.resourceUrl}/${id}`, ticket, { responseType: 'text' });
+        this.saving$.next(true);
+        return this.httpClient.put(`${this.resourceUrl}/${id}`, ticket, { responseType: 'text' })
+            .pipe(map((ticket) => {
+                this.saving$.next(false);
+                this.refreshTickets();
+                return ticket;
+            }));;
     }
 
     deleteTicket(id: string): Observable<string> {

@@ -13,6 +13,7 @@ import { ToastModule } from 'primeng/toast';
 import { ToolbarModule } from 'primeng/toolbar';
 import { SpeedDialModule } from 'primeng/speeddial';
 import { BadgeModule } from 'primeng/badge';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 @NgModule({
     declarations: [],
@@ -29,7 +30,8 @@ import { BadgeModule } from 'primeng/badge';
         CalendarModule,
         DropdownModule,
         SpeedDialModule,
-        BadgeModule
+        BadgeModule,
+        ProgressSpinnerModule,
     ],
     exports: [
         ButtonModule,
@@ -44,7 +46,8 @@ import { BadgeModule } from 'primeng/badge';
         CalendarModule,
         DropdownModule,
         SpeedDialModule,
-        BadgeModule
+        BadgeModule,
+        ProgressSpinnerModule
     ],
 })
-export class PrimeModule {}
+export class PrimeModule { }

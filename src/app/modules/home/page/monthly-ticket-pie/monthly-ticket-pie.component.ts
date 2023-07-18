@@ -34,7 +34,6 @@ export class MonthlyTicketPieComponent implements OnInit {
                     dataset.data.push(count.numberOfTickets);
                 });
                 this.data.datasets.push(dataset);
-                console.log(this.data);
             })
     }
 

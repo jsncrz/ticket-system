@@ -1,6 +1,6 @@
-import { Component, Input, OnChanges, OnInit, SimpleChanges, Output, EventEmitter } from '@angular/core';
-import { Ticket, TicketStatus } from '@schema/ticket';
-import { CdkDragStart, CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
+import { CdkDragDrop, CdkDragStart, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
+import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
+import { Ticket, TicketPriority, TicketStatus } from '@schema/ticket';
 
 @Component({
     selector: 'ts-ticket-board',
@@ -9,8 +9,11 @@ import { CdkDragStart, CdkDragDrop, moveItemInArray, transferArrayItem } from '@
 })
 export class TicketBoardComponent implements OnChanges {
     TicketStatus = TicketStatus
+    TicketPriority = TicketPriority
 
     @Input() tickets!: Ticket[];
+    @Input() saving!: boolean;
+    @Input() loading!: boolean;
     @Output() movedTicket: EventEmitter<Ticket> = new EventEmitter();
 
     dragging: boolean = false;
@@ -55,6 +58,9 @@ export class TicketBoardComponent implements OnChanges {
     }
 
     onDrop(event: CdkDragDrop<Ticket[]>, status: TicketStatus): void {
+        if (event.previousContainer === event.container && event.previousIndex === event.currentIndex) {
+            return;
+        }
         if (event.previousContainer === event.container) {
             moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
         } else {
@@ -78,7 +84,7 @@ export class TicketBoardComponent implements OnChanges {
             } else if (index === tickets.length - 1) {
                 currentTicket.position = tickets[index-1].position + 1000;
             } else {
-                currentTicket.position = Math.trunc(tickets[index+1].position + tickets[index-1].position / 2);
+                currentTicket.position = Math.trunc((tickets[index+1].position + tickets[index-1].position) / 2);
             }
         } else {
             currentTicket.position = 0;
@@ -88,6 +94,10 @@ export class TicketBoardComponent implements OnChanges {
 
     handleDragStart(event: CdkDragStart): void {
         this.dragging = true;
+    }
+
+    handleDragEnd(event: CdkDragStart): void {
+        this.dragging = false;
     }
 
     handleClick(event: MouseEvent): void {

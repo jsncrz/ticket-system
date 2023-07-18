@@ -1,14 +1,15 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { TicketStatus, getTicketStatusLabel } from '@schema/ticket';
+import { TicketPriority, TicketStatus, getTicketPriorityLabel, getTicketStatusLabel } from '@schema/ticket';
+import { SelectUtil } from '@shared/utils/select-util';
 import { SelectItem } from 'primeng/api';
 
 @Component({
-    selector: 'ts-ticket-add',
-    templateUrl: './ticket-add.component.html',
-    styleUrls: ['./ticket-add.component.scss']
+    selector: 'ts-ticket-add-dialog',
+    templateUrl: './ticket-add-dialog.component.html',
+    styleUrls: ['./ticket-add-dialog.component.scss']
 })
-export class TicketAddComponent {
+export class TicketAddDialogComponent {
     @Input() addTicketDialog: boolean = false;
     @Input() saving: boolean = false;
     @Output() closeDialog: EventEmitter<any> = new EventEmitter();
@@ -18,25 +19,29 @@ export class TicketAddComponent {
     submitted: boolean = false;
     maxDate!: Date;
     status: SelectItem[] = [];
+    priority: SelectItem[] = [];
 
     constructor() {
         this.ticketForm = new FormGroup({
             title: new FormControl('', [Validators.required]),
             description: new FormControl(''),
             status: new FormControl(TicketStatus.New, [Validators.required]),
+            priority: new FormControl(TicketPriority.Low, [Validators.required]),
 
             // startTime: new FormControl('', [Validators.required]),
             // EndTime: new FormControl({ value: '', disabled: true }, [Validators.required]),
         });
-        Object.values(TicketStatus).forEach(value => {
-            if (!isNaN(Number(value))) {
-                this.status.push({label: getTicketStatusLabel(Number(value)), value: value})
-            }
-        })
+        this.status = SelectUtil.getSelectFromEnum(TicketStatus, getTicketStatusLabel);
+        this.priority = SelectUtil.getSelectFromEnum(TicketPriority, getTicketPriorityLabel);
     }
 
     onHide(): void {
-        this.ticketForm.reset();
+        this.ticketForm = new FormGroup({
+            title: new FormControl('', [Validators.required]),
+            description: new FormControl(''),
+            status: new FormControl(TicketStatus.New, [Validators.required]),
+            priority: new FormControl(TicketPriority.Low, [Validators.required]),
+        });
     }
 
     hideAddTicketDialog(): void {

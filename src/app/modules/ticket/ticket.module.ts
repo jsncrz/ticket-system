@@ -5,14 +5,14 @@ import { TicketRoutingModule } from './ticket-routing.module';
 
 import { CommonModule, DatePipe } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { TicketAddComponent } from './page/ticket-add/ticket-add.component';
+import { TicketAddDialogComponent } from './page/ticket-add/ticket-add-dialog.component';
 import { SharedModule } from '@shared/shared.module';
 import { TicketBoardComponent } from './page/ticket-board/ticket-board.component';
 
 @NgModule({
     declarations: [
         TicketComponent,
-        TicketAddComponent,
+        TicketAddDialogComponent,
         TicketBoardComponent,
     ],
     imports: [

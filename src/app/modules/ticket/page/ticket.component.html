@@ -3,9 +3,9 @@
         <div class="card px-6 py-6">
 
             <p-speedDial class="fab-custom" (onClick)="showAddTicketDialog()" className="speeddial-right" [rotateAnimation]="false"></p-speedDial>
-            <ts-ticket-board [tickets]="(tickets$ | async)!"></ts-ticket-board>
-            <ts-ticket-add [saving]="(saving$ | async)!" [addTicketDialog]="addTicketDialog"
-                (closeDialog)="hideAddTicketDialog()" (save)="addTicket($event)"></ts-ticket-add>
+            <ts-ticket-board (movedTicket)="ticketMoved($event)" [loading]="(loading$ | async)!" [saving]="(saving$ | async)!" [tickets]="(tickets$ | async)!"></ts-ticket-board>
+            <ts-ticket-add-dialog [saving]="(saving$ | async)!" [addTicketDialog]="addTicketDialog"
+                (closeDialog)="hideAddTicketDialog()" (save)="addTicket($event)"></ts-ticket-add-dialog>
         </div>
     </div>
 </div>
