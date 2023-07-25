@@ -31,9 +31,16 @@
                             "src/assets"
                         ],
                         "styles": [
+                            "src/styles.scss",
                             "node_modules/angular-calendar/css/angular-calendar.css",
-                            "node_modules/angular-calendar/css/angular-calendar.css",
-                            "src/styles.scss"
+                            "node_modules/quill/dist/quill.core.css",
+                            "node_modules/quill/dist/quill.snow.css"
+                        ],
+                        "scripts": [
+                            "node_modules/quill/dist/quill.min.js"
+                        ],
+                        "allowedCommonJsDependencies": [
+                           "quill"
                         ]
                     },
                     "configurations": {
@@ -100,12 +107,9 @@
                             "src/assets"
                         ],
                         "styles": [
-                            "node_modules/angular-calendar/css/angular-calendar.css",
-                            "node_modules/angular-calendar/css/angular-calendar.css",
                             "src/styles.scss"
                         ],
                         "scripts": [
-                            "../node_modules/chart.js/dist/chart.js"
                         ]
                     }
                 },

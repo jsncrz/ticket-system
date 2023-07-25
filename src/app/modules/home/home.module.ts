@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { SharedModule } from '@shared/shared.module';
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './page/home.component';
-import { MonthlyTicketPieComponent } from './page/monthly-ticket-pie/monthly-ticket-pie.component';
+import { MonthlyTicketPieComponent } from './component/monthly-ticket-pie/monthly-ticket-pie.component';
 
 
 @NgModule({

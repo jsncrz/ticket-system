@@ -34,7 +34,12 @@ export class TicketService extends BaseService {
     }
 
     getTicket(id: string): Observable<Ticket> {
-        return this.httpClient.get<Ticket>(`${this.resourceUrl}/${id}`);
+        this.loading$.next(true);
+        return this.httpClient.get<Ticket>(`${this.resourceUrl}/${id}`)
+            .pipe(map((ticket) => {
+                this.loading$.next(false);
+                return ticket;
+            }));
     }
 
     createTicket(ticket: Ticket): Observable<string> {

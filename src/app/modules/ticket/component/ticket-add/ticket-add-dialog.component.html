@@ -1,5 +1,5 @@
-<p-dialog [draggable]="false" [(visible)]="addTicketDialog" [style]="{width: '450px'}" header="Ticket Details" [modal]="true"
-    (onHide)="onHide()" class="p-fluid" [closable]="false">
+<p-dialog [draggable]="false" [(visible)]="addTicketDialog" [style]="{width: '50vw'}" [header]="ticket?.title || 'Create Ticket'" [modal]="true"
+    (onHide)="onHide()" class="p-fluid" [closable]="false" (onShow)="onShow()">
     <ng-template pTemplate="content" [formGroup]="ticketForm">
         <div class="field">
             <label for="add-dialog-task-title">Title</label>
@@ -7,17 +7,17 @@
                 [ngClass]="{'ng-invalid ng-dirty' : submitted && !ticketForm.value.task}" />
             <small class="ng-dirty ng-invalid" *ngIf="submitted && !ticketForm.value.task">Task is required.</small>
         </div>
-        <div class="field">
-            <label for="add-dialog-task-status">Description</label>
-            <textarea rows="5" cols="30" pInputTextarea formControlName="description" [autoResize]="true"></textarea>
-        </div>
-        <div class="field">
+        <div class="field short-field">
             <label for="add-dialog-task-status">Status</label>
             <p-dropdown appendTo="body" id="add-dialog-task-status" formControlName="status" [options]="status"></p-dropdown>
         </div>
-        <div class="field">
+        <div class="field short-field">
             <label for="add-dialog-task-priority">Priority</label>
             <p-dropdown appendTo="body" id="add-dialog-task-priority" formControlName="priority" [options]="priority"></p-dropdown>
+        </div>
+        <div class="field">
+            <label for="add-dialog-task-status">Description</label>
+            <p-editor formControlName="description" [style]="{ height: '320px' }"></p-editor>
         </div>
         <!-- <div class="field">
             <label for="add-dialog-task-start-time">Start Time</label>

@@ -14,6 +14,7 @@ import { ToolbarModule } from 'primeng/toolbar';
 import { SpeedDialModule } from 'primeng/speeddial';
 import { BadgeModule } from 'primeng/badge';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { EditorModule } from 'primeng/editor';
 
 @NgModule({
     declarations: [],
@@ -32,6 +33,7 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
         SpeedDialModule,
         BadgeModule,
         ProgressSpinnerModule,
+        EditorModule
     ],
     exports: [
         ButtonModule,
@@ -47,7 +49,8 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
         DropdownModule,
         SpeedDialModule,
         BadgeModule,
-        ProgressSpinnerModule
+        ProgressSpinnerModule,
+        EditorModule
     ],
 })
 export class PrimeModule { }

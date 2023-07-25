@@ -4,12 +4,13 @@ import { Ticket } from '@schema/ticket';
 import { TicketService } from '@service/ticket.service';
 
 @Component({
-  selector: 'ts-ticket',
-  templateUrl: './ticket.component.html',
-  styleUrls: ['./ticket.component.scss']
+    selector: 'ts-ticket',
+    templateUrl: './ticket.component.html',
+    styleUrls: ['./ticket.component.scss']
 })
 export class TicketComponent implements OnInit {
     tickets$!: Subject<Ticket[]>;
+    clickedTicket!: Ticket | null ;
     loading$!: Subject<boolean>;
     saving$!: Subject<boolean>;
     addTicketDialog: boolean = false;
@@ -24,9 +25,16 @@ export class TicketComponent implements OnInit {
     }
 
     addTicket(ticket: Ticket): void {
-        this.ticketService.createTicket(ticket).subscribe(() => {
-            this.addTicketDialog = false;
-        });
+        if (this.clickedTicket != null) {
+            this.ticketService.updateTicket(ticket.id, ticket).subscribe(() => {
+                this.addTicketDialog = false;
+                this.clickedTicket = null;
+            });
+        } else {
+            this.ticketService.createTicket(ticket).subscribe(() => {
+                this.addTicketDialog = false;
+            });
+        }
     }
 
     showAddTicketDialog(): void {
@@ -34,10 +42,16 @@ export class TicketComponent implements OnInit {
     }
 
     hideAddTicketDialog(): void {
+        this.clickedTicket = null;
         this.addTicketDialog = false;
     }
 
     ticketMoved(ticket: Ticket): void {
         this.ticketService.updateTicket(ticket.id, ticket).subscribe();
+    }
+
+    ticketClicked(ticket: Ticket): void {
+        this.clickedTicket = ticket;
+        this.addTicketDialog = true;
     }
 }

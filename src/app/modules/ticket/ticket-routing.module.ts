@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { TicketComponent } from './page/ticket.component';
+import { TicketDetailComponent } from './page/ticket-detail/ticket-detail.component';
 
 const routes: Routes = [
     {
@@ -11,6 +12,10 @@ const routes: Routes = [
     {
         path: '',
         component: TicketComponent,
+    },
+    {
+        path: ':id',
+        component: TicketDetailComponent,
     },
 ]
 

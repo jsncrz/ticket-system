@@ -2,8 +2,8 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Subject } from 'rxjs';
 
 export abstract class BaseService {
-    protected url: string = 'http://localhost:8080';
-    protected authenticatedUrl: string = 'http://localhost:8080/v1';
+    protected url: string = 'http://localhost:8000';
+    protected authenticatedUrl: string = this.url + '/v1';
     protected resourceUrl!: string;
     protected loading$: BehaviorSubject<boolean> = new BehaviorSubject(false);
     protected saving$: BehaviorSubject<boolean> = new BehaviorSubject(false);

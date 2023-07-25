@@ -1,19 +1,22 @@
 import { NgModule } from '@angular/core';
 
-import { TicketComponent } from './page/ticket.component';
 import { TicketRoutingModule } from './ticket-routing.module';
 
 import { CommonModule, DatePipe } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { TicketAddDialogComponent } from './page/ticket-add/ticket-add-dialog.component';
 import { SharedModule } from '@shared/shared.module';
-import { TicketBoardComponent } from './page/ticket-board/ticket-board.component';
+
+import { TicketAddDialogComponent } from './component/ticket-add/ticket-add-dialog.component';
+import { TicketBoardComponent } from './component/ticket-board/ticket-board.component';
+import { TicketDetailComponent } from './page/ticket-detail/ticket-detail.component';
+import { TicketComponent } from './page/ticket.component';
 
 @NgModule({
     declarations: [
         TicketComponent,
         TicketAddDialogComponent,
         TicketBoardComponent,
+        TicketDetailComponent,
     ],
     imports: [
         CommonModule,

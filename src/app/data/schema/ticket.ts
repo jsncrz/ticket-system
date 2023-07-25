@@ -47,6 +47,7 @@ export function getTicketStatusLabel(statusValue: number): string {
 export interface Ticket {
     id: string;
     title: string;
+    description: string;
     status: TicketStatus;
     priority: TicketPriority;
     tasks: Task[];

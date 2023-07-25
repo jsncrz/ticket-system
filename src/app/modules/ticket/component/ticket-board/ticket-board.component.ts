@@ -15,6 +15,7 @@ export class TicketBoardComponent implements OnChanges {
     @Input() saving!: boolean;
     @Input() loading!: boolean;
     @Output() movedTicket: EventEmitter<Ticket> = new EventEmitter();
+    @Output() clickedTicket: EventEmitter<Ticket> = new EventEmitter();
 
     dragging: boolean = false;
     newTickets: Ticket[] = [];
@@ -93,6 +94,7 @@ export class TicketBoardComponent implements OnChanges {
     }
 
     handleDragStart(event: CdkDragStart): void {
+        console.log(event);
         this.dragging = true;
     }
 
@@ -100,12 +102,12 @@ export class TicketBoardComponent implements OnChanges {
         this.dragging = false;
     }
 
-    handleClick(event: MouseEvent): void {
+    handleClick(ticket: Ticket): void {
         if (this.dragging) {
             this.dragging = false;
             return
         }
-        alert('clicked!');
+        this.clickedTicket.emit(ticket);
     }
 
 }

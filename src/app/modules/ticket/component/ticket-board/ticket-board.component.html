@@ -13,7 +13,7 @@
                 [cdkDropListData]="newTickets" (cdkDropListDropped)="onDrop($event, TicketStatus.New)">
                 <li cdkDrag *ngFor="let ticket of newTickets" class="board-row"
                     (cdkDragStarted)="handleDragStart($event)" (cdkDragEnded)="handleDragEnd($event)"
-                    (click)="handleClick($event)">
+                    (click)="handleClick(ticket)">
                     <ng-template
                         *ngTemplateOutlet="ticketItem; context: { $implicit: { title: ticket.title, priority: ticket.priority} }"></ng-template>
                 </li>
@@ -30,7 +30,7 @@
                 [cdkDropListData]="inProgressTickets" (cdkDropListDropped)="onDrop($event, TicketStatus.InProgress)">
                 <li cdkDrag *ngFor="let ticket of inProgressTickets" class="board-row"
                     (cdkDragStarted)="handleDragStart($event)" (cdkDragEnded)="handleDragEnd($event)"
-                    (click)="handleClick($event)">
+                    (click)="handleClick(ticket)">
                     <ng-template
                         *ngTemplateOutlet="ticketItem; context: { $implicit: { title: ticket.title, priority: ticket.priority} }"></ng-template>
                 </li>
@@ -47,7 +47,7 @@
                 [cdkDropListData]="testingTickets" (cdkDropListDropped)="onDrop($event, TicketStatus.Testing)">
                 <li cdkDrag *ngFor="let ticket of testingTickets" class="board-row"
                     (cdkDragStarted)="handleDragStart($event)" (cdkDragEnded)="handleDragEnd($event)"
-                    (click)="handleClick($event)">
+                    (click)="handleClick(ticket)">
                     <ng-template
                         *ngTemplateOutlet="ticketItem; context: { $implicit: { title: ticket.title, priority: ticket.priority}}"></ng-template>
                 </li>
@@ -64,13 +64,9 @@
                 [cdkDropListData]="completedTickets" (cdkDropListDropped)="onDrop($event, TicketStatus.Completed)">
                 <li cdkDrag *ngFor="let ticket of completedTickets" class="board-row"
                     (cdkDragStarted)="handleDragStart($event)" (cdkDragEnded)="handleDragEnd($event)"
-                    (click)="handleClick($event)">
+                    (click)="handleClick(ticket)">
                     <ng-template
                         *ngTemplateOutlet="ticketItem; context: { $implicit: { title: ticket.title, priority: ticket.priority}}"></ng-template>
-                    <div *cdkDragPreview class="board-preview">
-                        <ng-template
-                            *ngTemplateOutlet="ticketItem; context: { $implicit: { title: ticket.title, priority: ticket.priority}}"></ng-template>
-                    </div>
                 </li>
             </ul>
         </div>
@@ -132,7 +128,7 @@
             <ul class="ticket-list" *ngIf="tickets" cdkDropList
                 [cdkDropListData]="tickets" (cdkDropListDropped)="onDrop($event)">
                 <li cdkDrag *ngFor="let ticket of testingTickets" class="board-row"
-                    (cdkDragStarted)="handleDragStart($event)" (click)="handleClick($event)">
+                    (cdkDragStarted)="handleDragStart($event)" (click)="handleClick(ticket)">
                     {{ticket.title}}
                 </li>
             </ul>
