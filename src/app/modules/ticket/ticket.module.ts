@@ -6,7 +6,7 @@ import { CommonModule, DatePipe } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '@shared/shared.module';
 
-import { TicketAddDialogComponent } from './component/ticket-add/ticket-add-dialog.component';
+import { TicketAddDialogComponent } from './component/ticket-dialog/ticket-dialog.component';
 import { TicketBoardComponent } from './component/ticket-board/ticket-board.component';
 import { TicketDetailComponent } from './page/ticket-detail/ticket-detail.component';
 import { TicketComponent } from './page/ticket.component';

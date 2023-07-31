@@ -5,9 +5,9 @@ import { SelectUtil } from '@shared/utils/select-util';
 import { SelectItem } from 'primeng/api';
 
 @Component({
-    selector: 'ts-ticket-add-dialog',
-    templateUrl: './ticket-add-dialog.component.html',
-    styleUrls: ['./ticket-add-dialog.component.scss']
+    selector: 'ts-ticket-dialog',
+    templateUrl: './ticket-dialog.component.html',
+    styleUrls: ['./ticket-dialog.component.scss']
 })
 export class TicketAddDialogComponent {
     @Input() ticket!: Ticket | null;

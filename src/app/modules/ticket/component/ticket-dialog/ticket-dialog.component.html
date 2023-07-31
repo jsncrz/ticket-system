@@ -1,5 +1,20 @@
-<p-dialog [draggable]="false" [(visible)]="addTicketDialog" [style]="{width: '50vw'}" [header]="ticket?.title || 'Create Ticket'" [modal]="true"
-    (onHide)="onHide()" class="p-fluid" [closable]="false" (onShow)="onShow()">
+<p-dialog [draggable]="false" [(visible)]="addTicketDialog" [style]="{width: '50vw'}"
+    [header]="ticket?.title || 'Create Ticket'" [modal]="true" (onHide)="onHide()" class="p-fluid" [closable]="false"
+    (onShow)="onShow()" header="Header">
+
+    <ng-template pTemplate="header">
+        <div class="text-xl font-bold">
+            <ng-container *ngIf="ticket; else createTicket">
+                <a [routerLink]="ticket.id">
+                    {{ticket.title}}
+                </a>
+            </ng-container>
+            <ng-template #createTicket>
+                <a>Create Ticket</a>
+            </ng-template>
+        </div>
+
+    </ng-template>
     <ng-template pTemplate="content" [formGroup]="ticketForm">
         <div class="field">
             <label for="add-dialog-task-title">Title</label>
@@ -9,11 +24,13 @@
         </div>
         <div class="field short-field">
             <label for="add-dialog-task-status">Status</label>
-            <p-dropdown appendTo="body" id="add-dialog-task-status" formControlName="status" [options]="status"></p-dropdown>
+            <p-dropdown appendTo="body" id="add-dialog-task-status" formControlName="status"
+                [options]="status"></p-dropdown>
         </div>
         <div class="field short-field">
             <label for="add-dialog-task-priority">Priority</label>
-            <p-dropdown appendTo="body" id="add-dialog-task-priority" formControlName="priority" [options]="priority"></p-dropdown>
+            <p-dropdown appendTo="body" id="add-dialog-task-priority" formControlName="priority"
+                [options]="priority"></p-dropdown>
         </div>
         <div class="field">
             <label for="add-dialog-task-status">Description</label>
@@ -37,7 +54,7 @@
     <ng-template pTemplate="footer">
         <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-text" (click)="hideAddTicketDialog()"
             [loading]="saving"></button>
-        <button pButton pRipple label="Save" icon="pi pi-check" (click)="addTicket()" [loading]="saving"
-            [disabled]="!ticketForm.valid"></button>
+        <button pButton pRipple [label]="ticket !== null ? 'Update' : 'Save'" icon="pi pi-check" (click)="addTicket()"
+            [loading]="saving" [disabled]="!ticketForm.valid"></button>
     </ng-template>
 </p-dialog>

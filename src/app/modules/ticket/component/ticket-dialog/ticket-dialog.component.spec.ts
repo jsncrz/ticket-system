@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TicketAddDialogComponent } from './ticket-add-dialog.component';
+import { TicketAddDialogComponent } from './ticket-dialog.component';
 
 describe('TicketAddDialogComponent', () => {
   let component: TicketAddDialogComponent;
