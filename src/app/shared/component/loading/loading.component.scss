@@ -1,0 +1,9 @@
+.loading-overlay {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--surface-overlay);
+    z-index: 100;
+    border-radius: 6px;
+}

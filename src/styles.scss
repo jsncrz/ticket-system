@@ -32,13 +32,3 @@ $gutter: 1rem; //for primeflex grid system
     top: 0;
     height: 100%;
 }
-
-.loading-overlay {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: #7d7d7d30;
-    z-index: 100;
-    border-radius: 6px;
-}

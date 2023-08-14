@@ -14,7 +14,6 @@ import { AppMenuitemComponent } from './menu/menu-item/app.menuitem.component';
 import { RouterModule } from '@angular/router';
 import { AppTopBarComponent } from './topbar/app.topbar.component';
 import { AppFooterComponent } from './footer/app.footer.component';
-import { AppConfigModule } from './config/config.module';
 import { AppSidebarComponent } from "./sidebar/app.sidebar.component";
 import { AppLayoutComponent } from "./app.layout.component";
 
@@ -39,7 +38,6 @@ import { AppLayoutComponent } from "./app.layout.component";
         InputSwitchModule,
         RippleModule,
         RouterModule,
-        AppConfigModule
     ],
     exports: [AppLayoutComponent]
 })

@@ -9,10 +9,14 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
 
 // Components
 import { CalendarHeaderComponent } from './component/calendar-header/calendar-header.component';
+import { LoadingComponent } from './component/loading/loading.component';
+import { ResourceNotFoundComponent } from './component/resource-not-found/resource-not-found.component';
 
 @NgModule({
     declarations: [
-        CalendarHeaderComponent
+        CalendarHeaderComponent,
+        LoadingComponent,
+        ResourceNotFoundComponent
     ],
     imports: [
         PrimeModule,
@@ -31,6 +35,8 @@ import { CalendarHeaderComponent } from './component/calendar-header/calendar-he
         AngularCalendar,
         AsyncPipe,
         CalendarHeaderComponent,
+        LoadingComponent,
+        ResourceNotFoundComponent
     ]
 })
 export class SharedModule { }
